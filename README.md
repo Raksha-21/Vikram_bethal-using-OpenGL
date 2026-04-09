@@ -33,6 +33,7 @@ C:\msys64\ucrt64\bin\g++.exe -g vikram_betal.cpp -o vikram_betal.exe -lfreeglut 
 ```
 **2. Run the code:**
 ```powershell
+
 .\vikram_betal.exe
 ```
 
