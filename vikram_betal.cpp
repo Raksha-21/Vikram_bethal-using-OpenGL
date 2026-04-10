@@ -121,7 +121,7 @@ void drawPalaceBackground() {
     }
 }
 
-// Function to draw the tree where Vetala hangs
+// Function to draw the tree where Bethal hangs
 void drawTree() {
     // Trunk (brown). Note: The base is changed to -5.5f so it firmly plants into the grass visually
     glColor3f(0.4f, 0.2f, 0.0f); 
@@ -271,11 +271,11 @@ void drawKing(float x, float y, bool carryingBetal, bool onThrone, bool strike) 
     glPopMatrix();
 }
 
-// Function to draw Vetala
-void drawVetala(float x, float y, float angle, bool carried) {
+// Function to draw Bethal
+void drawBethal(float x, float y, float angle, bool carried) {
     glPushMatrix(); 
     glTranslatef(x, y, 0.0f); 
-    // glRotatef rotates the coordinate system. Used when Vetala swings or hangs upside down.
+    // glRotatef rotates the coordinate system. Used when Bethal swings or hangs upside down.
     glRotatef(angle, 0.0f, 0.0f, 1.0f); 
     
     // Ghost Hair
@@ -512,27 +512,28 @@ void display() {
         }
         else if (scene == 5) { 
             drawTree(); 
-            drawVetala(4.0f, 3.0f, betalAngle, false); 
+            drawBethal(4.0f, 3.0f, betalAngle, false); 
             drawKing(vikramX, vikramY, false, false, false); 
         }
         else if (scene == 6) { 
             drawTree(); 
+            // Draw Bethal first, so when carried he sits behind the King's face without blocking it
+            drawBethal(vikramX, vikramY + 2.0f, 0.0f, true); 
             drawKing(vikramX, vikramY, true, false, false); 
-            drawVetala(vikramX, vikramY + 2.0f, 0.0f, true); 
         }
         else if (scene == 7) { 
             drawTree(); 
-            drawKing(vikramX, vikramY, true, false, false);
-            // Show a speech bubble when Vetala is speaking
+            // Show a speech bubble when Bethal is speaking
             if (elapsedTime > 285 && elapsedTime < 315) {
                 drawSpeechBubble();
             }
-            drawVetala(betalX, betalY, betalAngle, (elapsedTime <= 315.0f));
+            drawBethal(betalX, betalY, betalAngle, (elapsedTime <= 315.0f));
+            drawKing(vikramX, vikramY, true, false, false);
         }
         else if (scene == 8) { 
             drawTree(); 
             drawKing(vikramX, vikramY, false, false, false); 
-            drawVetala(betalX, betalY, betalAngle, false);
+            drawBethal(betalX, betalY, betalAngle, false);
             if (elapsedTime > 345 && elapsedTime < 375) { 
                 glColor3f(1.0f, 0.0f, 0.0f); 
                 drawSpeechBubble(); 
@@ -579,17 +580,17 @@ void display() {
             drawText(-9.5f, -7.2f, "it, the body suddenly started laughing.");
         }
         else if (scene == 6) { 
-            drawText(-9.5f, -6.0f, "The body was possessed by the spirit Vetala. The ghost");
+            drawText(-9.5f, -6.0f, "The body was possessed by the spirit Bethal. The ghost");
             drawText(-9.5f, -6.6f, "agreed to go with the king but on one condition - he");
             drawText(-9.5f, -7.2f, "would tell a story and ask a riddle during the journey.");
         }
         else if (scene == 7) { 
-            drawText(-9.5f, -6.0f, "Each time Vetala finished a story, he asked a difficult");
+            drawText(-9.5f, -6.0f, "Each time Bethal finished a story, he asked a difficult");
             drawText(-9.5f, -6.6f, "question. Whenever the king answered, the clever ghost");
             drawText(-9.5f, -7.2f, "escaped and flew back to the tree.");
         }
         else if (scene == 8) { 
-            drawText(-9.5f, -6.0f, "Finally, Vetala revealed a secret: The sage who had sent");
+            drawText(-9.5f, -6.0f, "Finally, Bethal revealed a secret: The sage who had sent");
             drawText(-9.5f, -6.6f, "the king actually planned to sacrifice him in a dark");
             drawText(-9.5f, -7.2f, "ritual to gain magical powers.");
         }
@@ -599,7 +600,7 @@ void display() {
             drawText(-9.5f, -7.2f, "the king defeated him and stopped the evil plan.");
         }
         else if (scene == 10) { 
-            drawText(-9.5f, -6.0f, "Impressed by the king's bravery and wisdom, Vetala");
+            drawText(-9.5f, -6.0f, "Impressed by the king's bravery and wisdom, Bethal");
             drawText(-9.5f, -6.6f, "praised him. King Vikramaditya returned safely to his");
             drawText(-9.5f, -7.2f, "kingdom and continued ruling with justice.");
         }
